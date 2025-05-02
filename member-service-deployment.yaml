@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: member-service
+  labels:
+    app: member-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: member-service
+  template:
+    metadata:
+      labels:
+        app: member-service
+    spec:
+      containers:
+        - name: member-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/member-service:latest
+          ports:
+            - containerPort: 4002
+          envFrom:
+            - secretRef:
+                name: member-service-secret
