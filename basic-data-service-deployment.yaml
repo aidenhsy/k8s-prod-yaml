@@ -19,6 +19,7 @@ spec:
           image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/basic-data-service:latest
           ports:
             - containerPort: 4000
+            - containerPort: 5000
           envFrom:
             - secretRef:
                 name: basic-data-service-secret
