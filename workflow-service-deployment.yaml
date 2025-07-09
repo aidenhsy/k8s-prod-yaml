@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workflow-service
+  labels:
+    app: workflow-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workflow-service
+  template:
+    metadata:
+      labels:
+        app: workflow-service
+    spec:
+      containers:
+        - name: workflow-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/workflow-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4011
+            - containerPort: 5011
+          envFrom:
+            - secretRef:
+                name: workflow-service-secret
