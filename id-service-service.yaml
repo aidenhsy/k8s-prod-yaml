@@ -1,11 +1,27 @@
+# --- 1. external HTTP ---
 apiVersion: v1
 kind: Service
 metadata:
   name: id-service
 spec:
   type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: 4009
   selector:
     app: id-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4009
+---
+# --- 2. in-cluster raw TCP ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: id-service-tcp
+spec:
+  clusterIP: None
+  selector:
+    app: id-service
+  ports:
+    - name: tcp-micro
+      port: 5009
+      targetPort: 5009
