@@ -20,6 +20,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 4010
+            - containerPort: 5010
           envFrom:
             - secretRef:
                 name: procurement-service-secret

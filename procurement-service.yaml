@@ -1,3 +1,4 @@
+# --- 1. external HTTP ---
 apiVersion: v1
 kind: Service
 metadata:
@@ -9,3 +10,18 @@ spec:
       targetPort: 4010
   selector:
     app: procurement-service
+
+# --- 2. in-cluster raw TCP ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: procurement-service-tcp
+spec:
+  clusterIP: None
+  selector:
+    app: procurement-service
+  ports:
+    - name: tcp-micro
+      port: 5010
+      targetPort: 5010
+
