@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounting-service
+  labels:
+    app: accounting-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: accounting-service
+  template:
+    metadata:
+      labels:
+        app: accounting-service
+    spec:
+      containers:
+        - name: accounting-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/accounting-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4014
+            - containerPort: 5014
+          envFrom:
+            - secretRef:
+                name: accounting-service-secret
