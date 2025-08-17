@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: public-service
+  labels:
+    app: public-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: public-service
+  template:
+    metadata:
+      labels:
+        app: public-service
+    spec:
+      containers:
+        - name: public-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/public-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4015
+          envFrom:
+            - secretRef:
+                name: public-service-secret

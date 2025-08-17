@@ -1,0 +1,13 @@
+# --- 1. external HTTP /healthz ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: public-service
+spec:
+  type: ClusterIP
+  selector:
+    app: public-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4015
