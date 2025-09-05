@@ -1,0 +1,12 @@
+# --- 1. external HTTP ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: im-jobs-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 4016
+  selector:
+    app: im-jobs-service

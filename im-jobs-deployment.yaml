@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: im-jobs-service
+  labels:
+    app: im-jobs-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: im-jobs-service
+  template:
+    metadata:
+      labels:
+        app: im-jobs-service
+    spec:
+      containers:
+        - name: im-jobs-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/im-jobs-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4016
+          envFrom:
+            - secretRef:
+                name: im-jobs-service-secret
