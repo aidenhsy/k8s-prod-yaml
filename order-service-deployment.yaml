@@ -17,8 +17,10 @@ spec:
       containers:
         - name: order-service
           image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/order-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 4008
+            - containerPort: 5008
           envFrom:
             - secretRef:
                 name: order-service-secret
