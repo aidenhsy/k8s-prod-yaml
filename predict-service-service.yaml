@@ -1,3 +1,4 @@
+# --- 1. external HTTP ---
 apiVersion: v1
 kind: Service
 metadata:
@@ -9,3 +10,17 @@ spec:
       targetPort: 4004
   selector:
     app: predict-service
+
+# --- 2. in-cluster raw TCP ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: predict-service-tcp
+spec:
+  clusterIP: None
+  selector:
+    app: predict-service
+  ports:
+    - name: tcp-micro
+      port: 5004
+      targetPort: 5004

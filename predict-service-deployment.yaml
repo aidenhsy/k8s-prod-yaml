@@ -17,8 +17,10 @@ spec:
       containers:
         - name: predict-service
           image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/predict-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 4004
+            - containerPort: 5004
           envFrom:
             - secretRef:
                 name: predict-service-secret
