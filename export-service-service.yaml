@@ -1,0 +1,27 @@
+# --- 1. external HTTP ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: export-service
+spec:
+  type: ClusterIP
+  selector:
+    app: export-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4040
+---
+# --- 2. in-cluster raw TCP ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: export-service-tcp
+spec:
+  clusterIP: None
+  selector:
+    app: export-service
+  ports:
+    - name: tcp-micro
+      port: 5040
+      targetPort: 5040

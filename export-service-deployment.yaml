@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: export-service
+  labels:
+    app: export-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: export-service
+  template:
+    metadata:
+      labels:
+        app: export-service
+    spec:
+      containers:
+        - name: export-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/export-service:prod
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4040
+            - containerPort: 5040
+          envFrom:
+            - secretRef:
+                name: export-service-secret
