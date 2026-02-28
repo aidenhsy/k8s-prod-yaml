@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: export-service
-          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/export-service:prod
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/export-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4040
