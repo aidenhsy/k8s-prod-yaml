@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payroll-service
+  labels:
+    app: payroll-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payroll-service
+  template:
+    metadata:
+      labels:
+        app: payroll-service
+    spec:
+      containers:
+        - name: payroll-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/payroll-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4053
+            - containerPort: 5053
+          envFrom:
+            - secretRef:
+                name: payroll-service-secret

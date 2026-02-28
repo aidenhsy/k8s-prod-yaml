@@ -18,7 +18,7 @@ spec:
         - name: member-service
           image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/member-service:latest
           ports:
-            - containerPort: 4002
+            - containerPort: 4022
           envFrom:
             - secretRef:
                 name: member-service-secret

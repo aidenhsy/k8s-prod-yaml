@@ -1,27 +1,27 @@
-# --- 1. external HTTP /healthz ---
+# --- 1. external HTTP ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: basic-data-service
+  name: kds-service
 spec:
   type: ClusterIP
   selector:
-    app: basic-data-service
+    app: kds-service
   ports:
     - name: http
       port: 80
-      targetPort: 4020
+      targetPort: 4017
 ---
 # --- 2. in-cluster raw TCP ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: basic-data-service-tcp
+  name: kds-service-tcp
 spec:
   clusterIP: None
   selector:
-    app: basic-data-service
+    app: kds-service
   ports:
     - name: tcp-micro
-      port: 5020
-      targetPort: 5020
+      port: 5017
+      targetPort: 5017

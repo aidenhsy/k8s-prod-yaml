@@ -7,7 +7,7 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 4004
+      targetPort: 4024
   selector:
     app: predict-service
 
@@ -22,5 +22,5 @@ spec:
     app: predict-service
   ports:
     - name: tcp-micro
-      port: 5004
-      targetPort: 5004
+      port: 5024
+      targetPort: 5024

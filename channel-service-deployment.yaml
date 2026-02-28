@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: channel-service
+  labels:
+    app: channel-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: channel-service
+  template:
+    metadata:
+      labels:
+        app: channel-service
+    spec:
+      containers:
+        - name: channel-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/channel-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4013
+            - containerPort: 5013
+          envFrom:
+            - secretRef:
+                name: channel-service-secret

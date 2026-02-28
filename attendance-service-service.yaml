@@ -1,27 +1,27 @@
-# --- 1. external HTTP /healthz ---
+# --- 1. external HTTP ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: basic-data-service
+  name: attendance-service
 spec:
   type: ClusterIP
   selector:
-    app: basic-data-service
+    app: attendance-service
   ports:
     - name: http
       port: 80
-      targetPort: 4020
+      targetPort: 4054
 ---
 # --- 2. in-cluster raw TCP ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: basic-data-service-tcp
+  name: attendance-service-tcp
 spec:
   clusterIP: None
   selector:
-    app: basic-data-service
+    app: attendance-service
   ports:
     - name: tcp-micro
-      port: 5020
-      targetPort: 5020
+      port: 5054
+      targetPort: 5054

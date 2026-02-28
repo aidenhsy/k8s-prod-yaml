@@ -1,27 +1,27 @@
-# --- 1. external HTTP /healthz ---
+# --- 1. external HTTP ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: basic-data-service
+  name: payroll-service
 spec:
   type: ClusterIP
   selector:
-    app: basic-data-service
+    app: payroll-service
   ports:
     - name: http
       port: 80
-      targetPort: 4020
+      targetPort: 4053
 ---
 # --- 2. in-cluster raw TCP ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: basic-data-service-tcp
+  name: payroll-service-tcp
 spec:
   clusterIP: None
   selector:
-    app: basic-data-service
+    app: payroll-service
   ports:
     - name: tcp-micro
-      port: 5020
-      targetPort: 5020
+      port: 5053
+      targetPort: 5053

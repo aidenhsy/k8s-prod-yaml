@@ -6,6 +6,6 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 4002
+      targetPort: 4022
   selector:
     app: member-service

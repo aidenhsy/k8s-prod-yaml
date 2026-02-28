@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attendance-service
+  labels:
+    app: attendance-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: attendance-service
+  template:
+    metadata:
+      labels:
+        app: attendance-service
+    spec:
+      containers:
+        - name: attendance-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/attendance-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4054
+            - containerPort: 5054
+          envFrom:
+            - secretRef:
+                name: attendance-service-secret

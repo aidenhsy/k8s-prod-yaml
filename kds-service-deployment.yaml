@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kds-service
+  labels:
+    app: kds-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kds-service
+  template:
+    metadata:
+      labels:
+        app: kds-service
+    spec:
+      containers:
+        - name: kds-service
+          image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/kds-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4017
+            - containerPort: 5017
+          envFrom:
+            - secretRef:
+                name: kds-service-secret

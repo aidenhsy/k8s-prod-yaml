@@ -19,8 +19,8 @@ spec:
           image: saihu-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/prod/basic-data-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 4000
-            - containerPort: 5000
+            - containerPort: 4020
+            - containerPort: 5020
           envFrom:
             - secretRef:
                 name: basic-data-service-secret
